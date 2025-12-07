@@ -2,9 +2,11 @@ import pygame
 import constants
 import player
 import asteroid
+import sys
 
 from asteroidfield import AsteroidField
 from logger import log_state
+from logger import log_event
 
 def main():
     pygame.init()
@@ -39,6 +41,12 @@ def main():
 
         # new_player.update(dt)
         updatable.update(dt)
+
+        for rock in asteroids:
+            if rock.collides_with(new_player):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
 
         screen.fill("black")
 
