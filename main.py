@@ -50,7 +50,13 @@ def main():
             if rock.collides_with(player):
                 log_event("player_hit")
                 print("Game over!")
-                sys.exit()    
+                sys.exit()
+
+            for shot in shots:
+                if shot.collides_with(rock):
+                    log_event("asteroid_shot")
+                    shot.kill()
+                    rock.kill()   
 
         for element in drawable:
             element.draw(screen)
